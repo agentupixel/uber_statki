@@ -152,38 +152,8 @@ int RzutKostka()
 	printf("RzutKostka: %i\n", ret);
 	return ret;
 }
-void WyslijStanGryDoWszystkichGraczy()
-{
-	SPakiet_SK_StanGry pakietStanuGry;
-	pakietStanuGry.identyfikator = PSK_STAN_GRY;
-	pakietStanuGry.stan = gra;
-	for (int i = 0; i < iloscGraczy; i++)
-	{
-		WyslijPakiet(i, &pakietStanuGry, sizeof(pakietStanuGry));
-	}
-}
-void UstawPionkiGraczyNaPolachStartowych()
-{
-	for (int i = 0; i < iloscGraczy; i++)
-	{
-		for (int j = 0; j < 4; j++)
-		{
-			gra.domki[i][j] = i + 1;
-		}
-	}
-}
-void ustawNumerNastepnegoGracza()
-{
-	ruchGracza++;
-	if (ruchGracza >= iloscGraczy)
-		ruchGracza = 0;
-	while (gracze[ruchGracza].wszystkiePionkiNaMecie || gracze[ruchGracza].odlaczony)
-	{
-		ruchGracza++;
-		if (ruchGracza >= iloscGraczy)
-			ruchGracza = 0;
-	}
-}
+
+
 void ObsluzPakietGracza(int gracz, void *dane, int dlugosc)
 {
 	SPakiet *p = (SPakiet*)dane;
