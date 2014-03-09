@@ -277,6 +277,11 @@ void forfiter_kurwa(){
 	int trololo;
 }
 
+void puszczamcommita(){
+
+}
+
+
 int main()
 {
 	cout << "Uruchamian serwer" << endl;
