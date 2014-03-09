@@ -273,6 +273,10 @@ void ObsluzPakietGracza(int gracz, void *dane, int dlugosc)
 	}
 }
 
+void forfiter_kurwa(){
+	int trololo;
+}
+
 int main()
 {
 	cout << "Uruchamian serwer" << endl;
