@@ -11,7 +11,7 @@ Logika::Logika(){
 
 }
 
-Logika::Logika(){
+Logika::~Logika(){
 
 }
 
@@ -55,7 +55,7 @@ void Logika::pozycjonowanie(int ktoryStatek){
 		x--;
 		y--;
 		if (plansza[y][x] != 0 || temp[y][x] != 0){
-			cout << "ups, coœ ju¿ tu jest!";
+			cout << "ups, coœ ju¿ tu jest! " << plansza[y][x] << " " << temp[y][x] << endl;
 			i--;
 		}
 		else{
@@ -92,16 +92,27 @@ void Logika::ustawStatki(){
 	
 	cout << "witaj w grze STATKI v 0.1" << endl << "ustaw statki, od najwiêkszego do najmniejszego"
 		<< endl << "podaj wspó³rzêdne 4-masztowca, ka¿d¹ zatwierdzaj ENTER, x,y 4 razy" << endl;
-
+	for (int i = 0; i < 10; i++)
+		for (int j = 0; j < 0; j++)
+			plansza[i][j] = 0;
 	pozycjonowanie(4);
+	pokazPlansze();
 	pozycjonowanie(3);
+	pokazPlansze();
 	pozycjonowanie(3);
+	pokazPlansze();
 	pozycjonowanie(2);
+	pokazPlansze();
 	pozycjonowanie(2);
+	pokazPlansze();
 	pozycjonowanie(2);
+	pokazPlansze();
 	pozycjonowanie(1);
+	pokazPlansze();
 	pozycjonowanie(1);
+	pokazPlansze();
 	pozycjonowanie(1);
+	pokazPlansze();
 	pozycjonowanie(1);
 	pokazPlansze();
 }
@@ -109,7 +120,7 @@ void Logika::ustawStatki(){
 char Logika::oznaczCzyTrafiony(char p, int x, int y){
 	if (p =='t'){
 		planszaPrzeciwnik[y][x] = 'x';
-		cout << "Trafiony!";
+		cout << "Trafiony!" << endl;
 		return 't';
 	}
 	else{
@@ -122,44 +133,253 @@ char Logika::oznaczCzyTrafiony(char p, int x, int y){
 void Logika::oznaczCzyZatopiony(char p, int x, int y){
 	if (p == 'z')
 	{
+		cout << " Zatopiony!" << endl;;
 		plansza[y - 1][x - 1] = '0';
 		plansza[y + 1][x + 1] = '0';
 		plansza[y - 1][x + 1] = '0';
+		plansza[y + 1][x - 1] = '0';
 		if (plansza[y - 1][x] != 0){
 			if (plansza[y - 2][x] != 0){
 				if (plansza[y - 3][x] != 0){
 					plansza[y - 4][x] = '0';
 					plansza[y - 4][x - 1] = '0';
-					plansza[y - 4][x +1 ] = '0';
+					plansza[y - 4][x + 1] = '0';
+					plansza[y - 3][x - 1] = '0';
+					plansza[y - 3][x + 1] = '0';
+					plansza[y - 2][x - 1] = '0';
+					plansza[y - 2][x + 1] = '0';
+					plansza[y - 1][x - 1] = '0';
+					plansza[y - 1][x + 1] = '0';
+					plansza[y][x - 1] = '0';
+					plansza[y][x + 1] = '0';
+				}
+				else{
+					plansza[y - 3][x] = '0';
+					plansza[y - 3][x - 1] = '0';
+					plansza[y - 3][x + 1] = '0';
+					plansza[y - 2][x - 1] = '0';
+					plansza[y - 2][x + 1] = '0';
+					plansza[y - 1][x - 1] = '0';
+					plansza[y - 1][x + 1] = '0';
+					plansza[y][x - 1] = '0';
+					plansza[y][x + 1] = '0';
 				}
 			}
 			else{
-			
-			
+				plansza[y - 2][x] = '0';
+				plansza[y - 2][x - 1] = '0';
+				plansza[y - 2][x + 1] = '0';
+				plansza[y - 1][x - 1] = '0';
+				plansza[y - 1][x + 1] = '0';
+				plansza[y][x - 1] = '0';
+				plansza[y][x + 1] = '0';
 			}
-
 		}
-			plansza[y + 1][x] != 0 && y < 9
+		else{
+			plansza[y - 1][x] = '0';
+			plansza[y - 1][x - 1] = '0';
+			plansza[y - 1][x + 1] = '0';
+			if (plansza[y + 1][x] != 0){
+				if (plansza[y + 2][x] != 0){
+					if (plansza[y + 3][x] != 0){
+						plansza[y + 4][x] = '0';
+						plansza[y + 4][x - 1] = '0';
+						plansza[y + 4][x + 1] = '0';
+						plansza[y + 3][x - 1] = '0';
+						plansza[y + 3][x + 1] = '0';
+						plansza[y + 2][x - 1] = '0';
+						plansza[y + 2][x + 1] = '0';
+						plansza[y + 1][x - 1] = '0';
+						plansza[y + 1][x + 1] = '0';
+						plansza[y][x - 1] = '0';
+						plansza[y][x + 1] = '0';
+					}
+					else{
+						plansza[y + 3][x] = '0';
+						plansza[y + 3][x - 1] = '0';
+						plansza[y + 3][x + 1] = '0';
+						plansza[y + 2][x - 1] = '0';
+						plansza[y + 2][x + 1] = '0';
+						plansza[y + 1][x - 1] = '0';
+						plansza[y + 1][x + 1] = '0';
+						plansza[y][x - 1] = '0';
+						plansza[y][x + 1] = '0';
+					}
+				}
+				else{
+					plansza[y + 2][x] = '0';
+					plansza[y + 2][x - 1] = '0';
+					plansza[y + 2][x + 1] = '0';
+					plansza[y + 1][x - 1] = '0';
+					plansza[y + 1][x + 1] = '0';
+					plansza[y][x - 1] = '0';
+					plansza[y][x + 1] = '0';
+				}
 		
-		plansza[y][x + 1] && x < 9
-			plansza[y][x - 1] && x > 0
-		plansza[y + 1][x - 1] = '0';
-	}
+			}
+			else{
+				plansza[y + 1][x - 1] = '0';
+				plansza[y + 1][x + 1] = '0';
+				plansza[y + 1][x] = '0';
+			}
+				if (plansza[y][x + 1] != 0){
+					if (plansza[y][x + 2] != 0){
+						if (plansza[y][x + 3] != 0){
+							plansza[y][x + 4] = '0';
+							plansza[y - 1][x + 4] = '0';
+							plansza[y + 1][x + 4] = '0';
+							plansza[y + 1][x + 3] = '0';
+							plansza[y - 1][x + 3] = '0';
+							plansza[y + 1][x + 2] = '0';
+							plansza[y - 1][x + 2] = '0';
+							plansza[y + 1][x + 1] = '0';
+							plansza[y - 1][x + 1] = '0';
+							plansza[y - 1][x] = '0';
+							plansza[y + 1][x] = '0';
+						}
+						else{
+							plansza[y][x + 3] = '0';
+							plansza[y + 1][x + 3] = '0';
+							plansza[y - 1][x + 3] = '0';
+							plansza[y + 1][x + 2] = '0';
+							plansza[y - 1][x + 2] = '0';
+							plansza[y + 1][x + 1] = '0';
+							plansza[y - 1][x + 1] = '0';
+							plansza[y + 1][x] = '0';
+							plansza[y - 1][x] = '0';
+						}
+					}
+					else{
+						plansza[y][x + 2] = '0';
+						plansza[y - 1][x + 2] = '0';
+						plansza[y + 1][x + 2] = '0';
+						plansza[y - 1][x + 1] = '0';
+						plansza[y + 1][x + 1] = '0';
+						plansza[y - 1][x] = '0';
+						plansza[y + 1][x] = '0';
+					}
 
+				}
+				else{
+					plansza[y - 1][x + 1] = '0';
+					plansza[y + 1][x + 1] = '0';
+					plansza[y][x + 1] = '0';
+				}
+				if (plansza[y][x - 1] != 0){
+					if (plansza[y][x - 2] != 0){
+						if (plansza[y][x - 3] != 0){
+							plansza[y][x - 4] = '0';
+							plansza[y - 1][x - 4] = '0';
+							plansza[y + 1][x - 4] = '0';
+							plansza[y + 1][x - 3] = '0';
+							plansza[y - 1][x - 3] = '0';
+							plansza[y + 1][x - 2] = '0';
+							plansza[y - 1][x - 2] = '0';
+							plansza[y + 1][x - 1] = '0';
+							plansza[y - 1][x - 1] = '0';
+							plansza[y - 1][x] = '0';
+							plansza[y + 1][x] = '0';
+						}
+						else{
+							plansza[y][x - 3] = '0';
+							plansza[y + 1][x - 3] = '0';
+							plansza[y - 1][x - 3] = '0';
+							plansza[y + 1][x - 2] = '0';
+							plansza[y - 1][x - 2] = '0';
+							plansza[y + 1][x - 1] = '0';
+							plansza[y - 1][x - 1] = '0';
+							plansza[y + 1][x] = '0';
+							plansza[y - 1][x] = '0';
+						}
+					}
+					else{
+						plansza[y][x - 2] = '0';
+						plansza[y - 1][x - 2] = '0';
+						plansza[y + 1][x - 2] = '0';
+						plansza[y - 1][x - 1] = '0';
+						plansza[y + 1][x - 1] = '0';
+						plansza[y - 1][x] = '0';
+						plansza[y + 1][x] = '0';
+					}
+					}
+				else{
+					plansza[y - 1][x - 1] = '0';
+					plansza[y + 1][x - 1] = '0';
+					plansza[y][x - 1] = '0';
+				}
+			}
+		}
+	pokazPlanszePrzeciwnik();
 }
+
 char Logika::czyPrzeciwnikTrafil(int x, int y){
-	return 't';
-}
+	if (plansza[y][x] != 0){
+		plansza[y][x] = 'x';
+		cout << "Trafil!" << endl;
+		pokazPlansze();
+		return 't';
+	}
 	else{
-
+		plansza[y][x] = 'o';
+		cout << "Spudlowal!" << endl;
+		pokazPlansze();
 		return 'p';
 	}
 }
-char Logika::czyPrzeciwnikZatopil(int x, int y){
-	return 't';
-}
-	else{
 
-		return 'p';
+
+char Logika::czyPrzeciwnikZatopil(char p, int x, int y){
+	if (p == 't'){
+
+		if (plansza[y - 1][x] == 'x'){
+			if (plansza[y - 2][x] == 'x'){
+				if (plansza[y - 3][x] == 'x'){
+					return 'z';
+				}
+				else
+					if (plansza[y - 3][x] == 0)
+						if (plansza[y + 1][x] == 'x' || plansza[y + 1][x] == 0)
+							return 'z';
+			}
+			else
+				if (plansza[y - 2][x] == 0)
+					if (plansza[y + 1][x] == 'x'
+						&& (plansza[y + 2][x] == 'x' || plansza[y + 2][x] == 0)
+						|| plansza[y + 1][x] == 0)
+						return 'z';
+		}
+		else{
+			if (plansza[y - 1][x] == 0){
+				if (plansza[y + 1][x] == 'x' && ((plansza[y + 2][x] == 'x' && (plansza[y + 3][x] == 'x' || plansza[y + 3][x] == 0)
+					|| plansza[y + 2][x] == 0))
+					|| plansza[y + 1][x] == 0){
+					if (plansza[y][x - 1] == 'x'){
+						if (plansza[y][x - 2] == 'x'){
+							if (plansza[y][x - 3] == 'x'){
+								return 'z';
+							}
+							else
+								if (plansza[y][x - 3] == 0)
+									if (plansza[y][x + 1] == 'x' || plansza[y][x + 1] == 0)
+										return 'z';
+						}
+						else
+							if (plansza[y][x - 2] == 0)
+								if (plansza[y][x + 1] == 'x'
+									&& (plansza[y][x + 2] == 'x' || plansza[y][x + 2] == 0)
+									|| plansza[y][x + 1] == 0)
+									return 'z';
+					}
+					else{
+						if (plansza[y][x - 1] == 0)
+							if (plansza[y][x + 1] == 'x' && ((plansza[y][x + 2] == 'x' && (plansza[y][x + 3] == 'x' || plansza[y][x + 3] == 0)
+								|| plansza[y][x + 2] == 0))
+								|| plansza[y][x + 1] == 0)
+								return 'z';
+					}
+				}
+			}
+		}
+		return 'n';
 	}
 }

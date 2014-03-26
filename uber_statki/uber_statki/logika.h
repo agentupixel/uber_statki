@@ -11,7 +11,7 @@ public:
 	char oznaczCzyTrafiony(char p, int x, int y);
 	void oznaczCzyZatopiony(char p, int x, int y);
 	char czyPrzeciwnikTrafil(int x, int y);
-	char czyPrzeciwnikZatopil(int x, int y);
+	char czyPrzeciwnikZatopil(char p, int x, int y);
 private:
 	char plansza[10][10];
 	char planszaPrzeciwnik[10][10];

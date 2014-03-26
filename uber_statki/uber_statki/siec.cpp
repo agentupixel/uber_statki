@@ -10,7 +10,6 @@ Siec::Siec(){
 		exit(0);
 	}
 
-		// Create our socket
 	Socket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (Socket == INVALID_SOCKET)
 	{
@@ -19,8 +18,6 @@ Siec::Siec(){
 		system("PAUSE");
 		exit(0);
 	}
-
-		// Resolve IP address for hostname
 		
 	if ((host = gethostbyname("localhost")) == NULL)
 	{
@@ -29,12 +26,12 @@ Siec::Siec(){
 		system("PAUSE");
 		exit(0);
 	}
-		// Setup our socket address structure
+
 		
 	SockAddr.sin_port = htons(27015);
 	SockAddr.sin_family = AF_INET;
 	SockAddr.sin_addr.s_addr = *((unsigned long*)host->h_addr);
-		// Attempt to connect to server
+
 	if (connect(Socket, (SOCKADDR*)(&SockAddr), sizeof(SockAddr)) != 0)
 	{
 		std::cout << "Failed to establish connection with server\r\n";
@@ -42,7 +39,7 @@ Siec::Siec(){
 		system("PAUSE");
 		exit(0);
 	}
-		// Display message from server
+
 	
 	memset(buffer, 0, 1);
 	memset(tempBuffer, 0, 1);
@@ -73,7 +70,8 @@ void Siec::connection(){
 	while (buffer[0] != 'l'){
 		if (buffer[0] == 't'){
 			std::cout << "wybierz cel" << std::endl;
-			//todo: wywo³anie funkcji celowania, przypisanie  x i y
+			std::cin >> x;
+			std::cin >> y;
 			buffer[0] = tochar(x);
 			tempBuffer[0] = tochar(y);
 			std::cout << "pierwszys" << std::endl;
@@ -87,13 +85,8 @@ void Siec::connection(){
 			std::cout << "koniec" << std::endl;
 			if ((logika->oznaczCzyTrafiony(buffer[0], x, y)) == 't')
 				logika->oznaczCzyZatopiony(tempBuffer[0], x, y);
-			else
-				if (buffer[0] == 't')
-					std::cout << "trafiony!" << std::endl;
-				else
-					std::cout << "smieci";
-			//todo: wywo³anie funkcji oznaczaj¹cej na planszy trafienie lub pud³o
-			//na podstawie zawartoœci buffer[0]
+			if (buffer[0] != 'p' && buffer[0] != 't')
+				std::cout << "smieci";
 
 			/*
 			send i recv operuj¹ jedynie na char [], wiêc nie przeœlemy struktury
@@ -116,8 +109,8 @@ void Siec::connection(){
 				std::cout << "koniecpr" << std::endl;
 				y = toint(buffer);
 				//todo: sprawdzenie, czy trafi³ i odpowiednie ustawienie buffer i tempbuffer
-				buffer[0] = 't';
-				tempBuffer[0] = 'n';
+				buffer[0] = logika->czyPrzeciwnikTrafil(x, y);
+				tempBuffer[0] = logika->czyPrzeciwnikZatopil(buffer[0], x, y);
 				std::cout << "pierwszyps" << std::endl;
 				send(Socket, buffer, 1, 0);
 				std::cout << "drugips" << std::endl;
