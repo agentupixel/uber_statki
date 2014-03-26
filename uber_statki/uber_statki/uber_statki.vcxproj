@@ -78,11 +78,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="logika.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="siec.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="logika.h" />
     <ClInclude Include="siec.h" />
+    <ClInclude Include="wspolny_naglowek.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
