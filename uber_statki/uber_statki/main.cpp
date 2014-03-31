@@ -1,5 +1,5 @@
-#include "wspolny_naglowek.h"
-#include "siec.h"
+#include"wspolny_naglowek.h"
+#include"siec.h"
 
 int main(void){
 	Logika *logika = new Logika();
