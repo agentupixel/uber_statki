@@ -44,6 +44,7 @@ Siec::Siec(){
 	memset(buffer, 0, 1);
 	memset(tempBuffer, 0, 1);
 	logika = new Logika();
+	logika->ustawStatki();
 }
 
 Siec::~Siec(){
