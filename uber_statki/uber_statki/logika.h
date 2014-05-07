@@ -18,6 +18,7 @@ private:
 	void pozycjonowanie(int ktoryStatek);
 	void pokazPlansze();
 	void pokazPlanszePrzeciwnik();
+	char czyPrzegral();
 
 
 };

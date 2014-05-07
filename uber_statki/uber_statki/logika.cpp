@@ -424,3 +424,13 @@ char Logika::czyPrzeciwnikZatopil(char p, int x, int y){
 		return 'n';
 	}
 }
+
+char Logika::czyPrzegral(){
+	char temp;
+	for (int i = 0; i < 10; i++){
+		for (int j = 0; j < 10; j++){
+			if (plansza[i][j] == 0 || plansza[i][j] == 9)
+				temp = 'a';
+		}
+	}
+}
