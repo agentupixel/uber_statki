@@ -425,7 +425,7 @@ char Logika::czyPrzeciwnikZatopil(char p, int x, int y){
 	}
 }
 
-char Logika::czyPrzegral(){
+void Logika::czyPrzegral(){
 	char temp;
 	for (int i = 0; i < 10; i++){
 		for (int j = 0; j < 10; j++){
