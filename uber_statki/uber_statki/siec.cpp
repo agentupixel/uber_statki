@@ -43,8 +43,7 @@ Siec::Siec(){
 	
 	memset(buffer, 0, 1);
 	memset(tempBuffer, 0, 1);
-	logika = new Logika();
-	logika->ustawStatki();
+
 }
 
 Siec::~Siec(){
@@ -64,61 +63,79 @@ char Siec::tochar(int sign){
 	return x;
 }
 
-void Siec::connection(){
-	x = 1;
-	y = 2;
+void Siec::importx(const int x){
+	Siec::x = x;
+}
+
+void Siec::importy(const int y){
+	Siec::y = y;
+}
+
+int Siec::exportx(){
+	return x;
+}
+
+int Siec::exporty(){
+	return y;
+}
+
+void Siec::importShoot(const char a){
+	Siec::buffer[0] = a;
+}
+
+void Siec::importDrawn(const char b){
+	Siec::tempBuffer[0] = b;
+}
+
+int Siec::exportShoot(){
+	if (buffer[0] == 'p')
+		return 0;
+	else
+		if (buffer[0] == 't' && tempBuffer[0] == 'n')
+			return 1;
+		else
+			return 2;
+}
+
+int Siec::firstConn(){
 	recv(Socket, buffer, 1, 0);
-	while (buffer[0] != 'l'){
+	if (buffer[0] == 'p')
+		return 0;
+	else
+		return 1;
+}
+
+void Siec::connection(){
+	if (buffer[0] != 'l'){
 		if (buffer[0] == 't'){
-			std::cout << "wybierz cel" << std::endl;
-			std::cin >> x;
-			std::cin >> y;
+			help[0] = buffer[0];
 			buffer[0] = tochar(x);
 			tempBuffer[0] = tochar(y);
-			std::cout << "pierwszys" << std::endl;
+			std::cout << x << ',' << y << std::endl;
 			send(Socket, buffer, 1, 0);
-			std::cout << "drugis" << std::endl;
 			send(Socket, tempBuffer, 1, 0);
-			std::cout << "pierwszyr" << std::endl;
-			recv(Socket, buffer, 1, 0);
-			std::cout << "drugir" << std::endl;
-			recv(Socket, tempBuffer, 1, 0);
-			std::cout << "koniec" << std::endl;
-			if ((logika->oznaczCzyTrafiony(buffer[0], x, y)) == 't')
-				logika->oznaczCzyZatopiony(tempBuffer[0], x, y);
-			if (buffer[0] != 'p' && buffer[0] != 't')
-				std::cout << "smieci";
-
-			/*
-			send i recv operuj¹ jedynie na char [], wiêc nie przeœlemy struktury
-			zawartoœci tempBuffer i buffer
-			t - trafiony
-			p - pudlo
-			z - zatpiony
-			n - niezatopiony
-			l - przegrana - wysylana przez gracza, jesli juz nie ma zadnych statkow
-			*/
 		}
 		else
 			if (buffer[0] == 'p'){
-				std::cout << "celuje przeciwnik" << std::endl;
-				std::cout << "pierwszypr" << std::endl;
+				help[0] = buffer[0];
 				recv(Socket, buffer, 1, 0);
-				x = toint(buffer);
-				std::cout << "drugipr" << std::endl;
 				recv(Socket, tempBuffer, 1, 0);
-				std::cout << "koniecpr" << std::endl;
-				y = toint(buffer);
-				//todo: sprawdzenie, czy trafi³ i odpowiednie ustawienie buffer i tempbuffer
-				buffer[0] = logika->czyPrzeciwnikTrafil(x, y);
-				tempBuffer[0] = logika->czyPrzeciwnikZatopil(buffer[0], x, y);
-				std::cout << "pierwszyps" << std::endl;
-				send(Socket, buffer, 1, 0);
-				std::cout << "drugips" << std::endl;
-				send(Socket, tempBuffer, 1, 0);
-				std::cout << "koniec" << std::endl;
-				buffer[0] = (buffer[0] == 't') ? 'p' : 't';
-				std::cout << buffer[0] << std::endl;
+				x = toint(buffer);
+				y = toint(tempBuffer);
+
 			}
 	}
 }
+
+void Siec::connection2(){
+	if (help[0] == 'p'){
+		send(Socket, buffer, 1, 0);
+		send(Socket, tempBuffer, 1, 0);
+		buffer[0] = (buffer[0] == 't') ? 'p' : 't';
+	}
+	if (help[0] == 't'){
+		recv(Socket, buffer, 1, 0);
+		recv(Socket, tempBuffer, 1, 0);
+	}
+}
+

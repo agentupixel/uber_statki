@@ -1,17 +1,24 @@
 #ifndef SIEC_H
 #define SIEC_H
 
-
-
-#include "wspolny_naglowek.h"
-#include "logika.h"
+#include <iostream>
 #include <WinSock2.h>
 
 class Siec{
 public:
 	Siec();
 	~Siec();
+	int firstConn();
 	void connection();
+	void connection2();
+	void importx(const int x);
+	void importy(const int y);
+	int exportx();
+	int exporty();
+	int exportShoot();
+	void importShoot(const char a);
+	void importDrawn(const char b);
+
 private:
 	int toint(char sign[]);
 	char tochar(int sign);
@@ -23,6 +30,6 @@ private:
 	SOCKADDR_IN SockAddr;
 	char buffer[1];
 	char tempBuffer[1];
-	Logika *logika;
+	char help[1];
 };
 #endif

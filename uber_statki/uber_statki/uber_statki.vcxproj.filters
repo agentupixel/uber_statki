@@ -21,7 +21,7 @@
     <ClCompile Include="siec.cpp">
       <Filter>Pliki zasobów</Filter>
     </ClCompile>
-    <ClCompile Include="logika.cpp">
+    <ClCompile Include="targa.cpp">
       <Filter>Pliki zasobów</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,11 +29,31 @@
     <ClInclude Include="siec.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="logika.h">
+    <ClInclude Include="main.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="wspolny_naglowek.h">
+    <ClInclude Include="Targa.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="baner.tga">
+      <Filter>Pliki nagłówkowe</Filter>
+    </Image>
+    <Image Include="baner2.tga">
+      <Filter>Pliki nagłówkowe</Filter>
+    </Image>
+    <Image Include="ocean.tga">
+      <Filter>Pliki nagłówkowe</Filter>
+    </Image>
+    <Image Include="statekakt.tga">
+      <Filter>Pliki nagłówkowe</Filter>
+    </Image>
+    <Image Include="stateknakt.tga">
+      <Filter>Pliki nagłówkowe</Filter>
+    </Image>
+    <Image Include="statekskr.tga">
+      <Filter>Pliki nagłówkowe</Filter>
+    </Image>
   </ItemGroup>
 </Project>

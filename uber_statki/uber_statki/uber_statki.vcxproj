@@ -78,14 +78,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="logika.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="siec.cpp" />
+    <ClCompile Include="targa.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="logika.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="siec.h" />
-    <ClInclude Include="wspolny_naglowek.h" />
+    <ClInclude Include="Targa.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="baner.tga" />
+    <Image Include="baner2.tga" />
+    <Image Include="ocean.tga" />
+    <Image Include="statekakt.tga" />
+    <Image Include="stateknakt.tga" />
+    <Image Include="statekskr.tga" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
