@@ -7,8 +7,13 @@
 #include <stdio.h>
 #include <math.h>
 #include <ctime>
+#include "glm/glm.hpp"
+#include <string>
+#include <stdio.h>
 #include <iostream>
-#include "Targa.h"
+#include <vector>
+#include "targa.h"
+#include "objloader.hpp"
 #define MINISZER 58
 #define MINIWYS 28
 #define MINIX 0
@@ -16,6 +21,26 @@
 #define ODSX 58+5
 #define ODSY 25
 #define GR2 900
+
+// tratwa
+std::vector<glm::vec3> vertices;
+std::vector<glm::vec2> uvs;
+std::vector<glm::vec3> normals;
+
+// lodka
+std::vector<glm::vec3> vertices2;
+std::vector<glm::vec2> uvs2;
+std::vector<glm::vec3> normals2;
+
+// hybryda
+std::vector<glm::vec3> vertices3;
+std::vector<glm::vec2> uvs3;
+std::vector<glm::vec3> normals3;
+
+// statek
+std::vector<glm::vec3> vertices4;
+std::vector<glm::vec2> uvs4;
+std::vector<glm::vec3> normals4;
 
 enum
 {
@@ -28,12 +53,12 @@ enum
 	ZEROWANIE,
 	START
 };
-
+bool res,res2,res3,res4;
 Siec *siec = new Siec();
 bool czyStrzal = false, ustawianie = false;
 int kto;
 float xpos = 220, ypos = 230, zpos = 290, xrot = 48, yrot = 0, angle = 0.0;
-GLuint tekstura[7];
+GLuint tekstura[10];
 clock_t start, finish;
 double czas;
 int w = 1000;
@@ -42,6 +67,7 @@ int h = 600;
 int xstatek = 10;//do statkow
 int zstatek = 10;
 int tex[11] = { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
+int texprzeciwnika[11] = { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
 int tex2 = 2, tex3 = 3;
 int xgreen = 0;//pozycja zielonego kwadratu
 int zgreen = 0;
@@ -105,6 +131,7 @@ int odkrytePrzeciwnika[10][10] =
 };
 int maszty[4] = { 4, 3, 2, 1 };
 int masztyPrzeciwnika[4] = { 4, 3, 2, 1 };
+int rodzajStatku=0;
 int zajete[10][10] =
 {
 	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },//0- moge tu postawic statek
@@ -151,3 +178,5 @@ void oznaczStatekPrzeciwnika();
 void okrazanieZatopionychPrzeciwnika(int x, int y);
 void oznaczTrafieniePrzeciwnika(int x, int y);
 void ustawStatki();
+void wyswietlModel(GLuint teksturka,GLdouble skala,GLfloat transX,GLfloat transY,GLfloat transZ,GLfloat rotAngle,GLfloat rotX,GLfloat rotY,GLfloat rotZ,std::vector<glm::vec3> vertices111,std::vector<glm::vec2> uvs111,std::vector<glm::vec3> normals111);
+

@@ -3,7 +3,7 @@
 
 Siec::Siec(){
 	if (WSAStartup(MAKEWORD(2, 2), &WsaDat) != 0)
-	{			
+	{
 		std::cout << "Winsock error - Winsock initialization failed\r\n";
 		WSACleanup();
 		system("PAUSE");
@@ -18,7 +18,7 @@ Siec::Siec(){
 		system("PAUSE");
 		exit(0);
 	}
-		
+
 	if ((host = gethostbyname("localhost")) == NULL)
 	{
 		std::cout << "Failed to resolve hostname.\r\n";
@@ -27,7 +27,7 @@ Siec::Siec(){
 		exit(0);
 	}
 
-		
+
 	SockAddr.sin_port = htons(27015);
 	SockAddr.sin_family = AF_INET;
 	SockAddr.sin_addr.s_addr = *((unsigned long*)host->h_addr);
@@ -40,7 +40,7 @@ Siec::Siec(){
 		exit(0);
 	}
 
-	
+
 	memset(buffer, 0, 1);
 	memset(tempBuffer, 0, 1);
 

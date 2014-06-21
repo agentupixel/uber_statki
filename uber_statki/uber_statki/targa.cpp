@@ -7,6 +7,11 @@
 
 #include "Targa.h"
 
+///////////////////////////////////////////////////////////////////////////////
+// Procedura 3aduje plik o podanej nazwie
+// wype3nia podan1 strukture TARGAINFO
+// oraz zwraca adres bufora z pikselami (jeoli nie by3o b3edu)
+// Jeoli by3 b31d - zwraca NULL LoadTGAImage("tex0.tga",);
 GLubyte *LoadTGAImage(char *filename, TARGAINFO *info)
 {
 	GLubyte	TGAHeader[12] = { 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0 };	// Nag3ówek TGA bez kompresji
