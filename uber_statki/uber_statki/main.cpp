@@ -1258,6 +1258,10 @@ void Menu(int value)
 
 int main(int argc, char **argv)
 {
+	std::cout << "podaj adres ip serwera" << std::endl;
+	std::string addr;
+	std::cin >> addr;
+	siec = new Siec(addr);
 	srand(time(0));
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);

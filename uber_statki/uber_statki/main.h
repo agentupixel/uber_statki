@@ -42,6 +42,8 @@ std::vector<glm::vec3> vertices4;
 std::vector<glm::vec2> uvs4;
 std::vector<glm::vec3> normals4;
 
+
+
 enum
 {
 	JEDNOMASZTOWCE,
@@ -54,7 +56,7 @@ enum
 	START
 };
 bool res, res2, res3, res4;
-Siec *siec = new Siec();
+Siec *siec;
 bool czyStrzal = false, ustawianie = false;
 int kto;
 float xpos = 220, ypos = 230, zpos = 290, xrot = 48, yrot = 0, angle = 0.0;

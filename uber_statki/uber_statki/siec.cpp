@@ -1,7 +1,9 @@
 #include "siec.h"
 #pragma comment(lib,"ws2_32.lib")
 
-Siec::Siec(){
+using namespace std;
+
+Siec::Siec(string address){
 	if (WSAStartup(MAKEWORD(2, 2), &WsaDat) != 0)
 	{
 		std::cout << "Winsock error - Winsock initialization failed\r\n";
@@ -17,7 +19,8 @@ Siec::Siec(){
 		exit(0);
 	}
 
-	if ((host = gethostbyname("localhost")) == NULL)
+	inet_pton(AF_INET, address.c_str(), &ipv4addr);
+	if ((host = gethostbyaddr((char *)&ipv4addr, sizeof ipv4addr, AF_INET)) == NULL)
 	{
 		std::cout << "Failed to resolve hostname.\r\n";
 		WSACleanup();

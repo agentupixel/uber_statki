@@ -3,10 +3,12 @@
 
 #include <iostream>
 #include <WinSock2.h>
+#include <Ws2tcpip.h>
+#include <string>
 
 class Siec{
 public:
-	Siec();
+	Siec(std::string address);
 	~Siec();
 	int firstConn();
 	void connection();
@@ -19,8 +21,10 @@ public:
 	void importShoot(const char a);
 	void importDrawn(const char b);
 	void sendEnd();
+	void getAddr();
 
 private:
+	struct in_addr ipv4addr;
 	int toint(char sign[]);
 	char tochar(int sign);
 	int x;
