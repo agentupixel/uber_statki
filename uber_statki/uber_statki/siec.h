@@ -18,6 +18,7 @@ public:
 	int exportShoot();
 	void importShoot(const char a);
 	void importDrawn(const char b);
+	void sendEnd();
 
 private:
 	int toint(char sign[]);

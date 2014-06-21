@@ -199,6 +199,14 @@ void enable(void)
 
 }
 
+bool sprawdzCzyKoniec(){
+	for (int i = 0; i < 10; i++)
+		for (int j = 0; j < 10; j++)
+			if (mojeStatki[i][j] == 1 || mojeStatki[i][j] == 2 || mojeStatki[i][j] == 3 || mojeStatki[i][j] == 4)
+				return false;
+	return true;
+}
+
 bool sprawdzStatek(int wiersz, int kolumna, int amaszty, int apoziom)
 {
 	if (apoziom == 0)
@@ -392,7 +400,6 @@ void pokazStatki()
 
 
 				glColor3f(0, 1, 1);
-				//glutSolidSphere(4,15,15);
 				glDisable(GL_TEXTURE_1D);
 				glEnable(GL_TEXTURE_2D);
 				glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
@@ -401,14 +408,10 @@ void pokazStatki()
 				glPushMatrix();
 				glColor3f(1.0, 0.0, 0.0);
 				glScaled(2.6, 2.6, 2.6);
-				//polozeniexstat = xgreen;
-				// polozeniezstat = zgreen;
+
 				glTranslatef(0.5f, 10.0f, 0.5f);
 				glRotatef(90, 0, 1, 0);
-				// glTranslated(polozeniexstat/5,0,polozeniezstat/5);
 
-				//if (zmiana==2) {
-				puts("KoKokKOOk");
 				glPushMatrix();
 				glTranslatef(-12.0, -15.0, 4.0);
 				glBegin(GL_TRIANGLES);
@@ -421,9 +424,7 @@ void pokazStatki()
 				glEnd();
 				glPopMatrix();
 				glDisable(GL_TEXTURE_2D);
-				//              }
 				glPopMatrix();
-				//glutSolidSphere(4,15,15);
 
 			}
 
@@ -876,9 +877,10 @@ void display(void)
 			indexi = siec->exportx();
 			indexj = siec->exporty();
 			oznaczTrafieniePrzeciwnika(indexi, indexj);
-			/*todo:
-			za kazdym razem sprawdzac, czy sa jeszcze jakies niezatopione statki, jak nie ma to:
-			siec->importShoot('l');*/
+			if (sprawdzCzyKoniec()){
+				siec->importShoot('l');
+				std::cout << "przegrana!" << std::endl;
+			}
 			siec->connection2();
 			kto = siec->exportShoot();
 			std::cout << "kto " << kto << std::endl;
@@ -892,6 +894,9 @@ void display(void)
 			siec->connection2();
 			oznaczStatekPrzeciwnika();
 			kto = siec->exportShoot();
+			if (kto == 3){
+				std::cout << "wygrana!" << std::endl;
+			}
 			std::cout << "kto " << kto << std::endl;
 			czyStrzal = false;
 		}
@@ -964,6 +969,8 @@ void keyboard(unsigned char key, int x, int y)
 	}
 	if (key == 27)
 	{
+		if ((kto == 1 || kto == 2))
+			siec->sendEnd();
 		exit(0);
 	}
 
@@ -978,7 +985,7 @@ void keyboard(unsigned char key, int x, int y)
 	}
 	if (key == 'o')//ja strzelam
 	{
-		if (koniecUstawiania == 1)
+		if ((koniecUstawiania == 1) && (odkrytePrzeciwnika[indexi][indexj] == 0))
 			czyStrzal = true;
 	}
 	if (key == 'p')
@@ -1096,7 +1103,7 @@ void oznaczStatekPrzeciwnika()
 		{
 			odkrytePrzeciwnika[indexi][indexj] = 1;
 		}
-		else if ((temp = siec->exportShoot()) == 2)
+		else if ((temp = siec->exportShoot()) == 2 || (temp = siec->exportShoot()) == 3)
 		{
 			odkrytePrzeciwnika[indexi][indexj] = 1;
 			okrazanieZatopionychPrzeciwnika(indexi, indexj);

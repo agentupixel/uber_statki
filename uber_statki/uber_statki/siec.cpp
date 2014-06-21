@@ -6,7 +6,6 @@ Siec::Siec(){
 	{
 		std::cout << "Winsock error - Winsock initialization failed\r\n";
 		WSACleanup();
-		system("PAUSE");
 		exit(0);
 	}
 
@@ -15,7 +14,6 @@ Siec::Siec(){
 	{
 		std::cout << "Winsock error - Socket creation Failed!\r\n";
 		WSACleanup();
-		system("PAUSE");
 		exit(0);
 	}
 
@@ -23,10 +21,8 @@ Siec::Siec(){
 	{
 		std::cout << "Failed to resolve hostname.\r\n";
 		WSACleanup();
-		system("PAUSE");
 		exit(0);
 	}
-
 
 	SockAddr.sin_port = htons(27015);
 	SockAddr.sin_family = AF_INET;
@@ -40,10 +36,8 @@ Siec::Siec(){
 		exit(0);
 	}
 
-
 	memset(buffer, 0, 1);
 	memset(tempBuffer, 0, 1);
-
 }
 
 Siec::~Siec(){
@@ -87,6 +81,11 @@ void Siec::importDrawn(const char b){
 	Siec::tempBuffer[0] = b;
 }
 
+void Siec::sendEnd(){
+	send(Socket, "l", 1, 0);
+	send(Socket, "l", 1, 0);
+}
+
 int Siec::exportShoot(){
 	if (buffer[0] == 'p')
 		return 0;
@@ -94,7 +93,10 @@ int Siec::exportShoot(){
 		if (buffer[0] == 't' && tempBuffer[0] == 'n')
 			return 1;
 		else
-			return 2;
+			if (buffer[0] == 'l')
+				return 3;
+			else
+				return 2;
 }
 
 int Siec::firstConn(){
@@ -111,7 +113,6 @@ void Siec::connection(){
 			help[0] = buffer[0];
 			buffer[0] = tochar(x);
 			tempBuffer[0] = tochar(y);
-			std::cout << x << ',' << y << std::endl;
 			send(Socket, buffer, 1, 0);
 			send(Socket, tempBuffer, 1, 0);
 		}
@@ -122,7 +123,6 @@ void Siec::connection(){
 				recv(Socket, tempBuffer, 1, 0);
 				x = toint(buffer);
 				y = toint(tempBuffer);
-
 			}
 	}
 }
@@ -131,8 +131,12 @@ void Siec::connection2(){
 	if (help[0] == 'p'){
 		send(Socket, buffer, 1, 0);
 		send(Socket, tempBuffer, 1, 0);
-		buffer[0] = (buffer[0] == 't') ? 'p' : 't';
-	}
+		if (buffer[0] != 'l')
+			buffer[0] = (buffer[0] == 't') ? 'p' : 't';
+		else
+			help[0] = 'k';
+		}
+	
 	if (help[0] == 't'){
 		recv(Socket, buffer, 1, 0);
 		recv(Socket, tempBuffer, 1, 0);
