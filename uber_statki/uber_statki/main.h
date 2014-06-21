@@ -53,7 +53,7 @@ enum
 	ZEROWANIE,
 	START
 };
-bool res,res2,res3,res4;
+bool res, res2, res3, res4;
 Siec *siec = new Siec();
 bool czyStrzal = false, ustawianie = false;
 int kto;
@@ -131,7 +131,7 @@ int odkrytePrzeciwnika[10][10] =
 };
 int maszty[4] = { 4, 3, 2, 1 };
 int masztyPrzeciwnika[4] = { 4, 3, 2, 1 };
-int rodzajStatku=0;
+int rodzajStatku = 0;
 int zajete[10][10] =
 {
 	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },//0- moge tu postawic statek
@@ -178,5 +178,5 @@ void oznaczStatekPrzeciwnika();
 void okrazanieZatopionychPrzeciwnika(int x, int y);
 void oznaczTrafieniePrzeciwnika(int x, int y);
 void ustawStatki();
-void wyswietlModel(GLuint teksturka,GLdouble skala,GLfloat transX,GLfloat transY,GLfloat transZ,GLfloat rotAngle,GLfloat rotX,GLfloat rotY,GLfloat rotZ,std::vector<glm::vec3> vertices111,std::vector<glm::vec2> uvs111,std::vector<glm::vec3> normals111);
+void wyswietlModel(GLuint teksturka, GLdouble skala, GLfloat transX, GLfloat transY, GLfloat transZ, GLfloat rotAngle, GLfloat rotX, GLfloat rotY, GLfloat rotZ, std::vector<glm::vec3> vertices111, std::vector<glm::vec2> uvs111, std::vector<glm::vec3> normals111);
 

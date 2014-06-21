@@ -84,16 +84,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h" />
+    <ClInclude Include="objloader.hpp" />
     <ClInclude Include="siec.h" />
     <ClInclude Include="Targa.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="22.tga" />
+    <Image Include="2222.tga" />
     <Image Include="baner.tga" />
     <Image Include="baner2.tga" />
+    <Image Include="hybryda.tga" />
     <Image Include="ocean.tga" />
+    <Image Include="statek12.tga" />
+    <Image Include="statek121.tga" />
     <Image Include="statekakt.tga" />
     <Image Include="stateknakt.tga" />
     <Image Include="statekskr.tga" />
+    <Image Include="tratwa.tga" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

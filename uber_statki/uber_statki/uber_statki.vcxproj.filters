@@ -35,6 +35,9 @@
     <ClInclude Include="Targa.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
+    <ClInclude Include="objloader.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="baner.tga">
@@ -55,5 +58,11 @@
     <Image Include="statekskr.tga">
       <Filter>Pliki nagłówkowe</Filter>
     </Image>
+    <Image Include="22.tga" />
+    <Image Include="2222.tga" />
+    <Image Include="hybryda.tga" />
+    <Image Include="statek12.tga" />
+    <Image Include="statek121.tga" />
+    <Image Include="tratwa.tga" />
   </ItemGroup>
 </Project>
